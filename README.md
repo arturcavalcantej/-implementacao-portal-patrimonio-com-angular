@@ -6,8 +6,7 @@ Implementação do Desafio do LCCV baseado no Backlog Desafio disponibilizado no
 possivel ser realizado(e também o que não foi possivel) tanto no front-end e no back-end, tendo em vista que não foi possivel fazer a integração de ambos.
 
 # Implementação do Front-End
-Foi desenvolvido a parte de formulário contendo as três abas(geral,bens e observações), não foi implementado 'Listar', no qual disponibilizado em um dos layouts de tela, pois esse não consta descrito no backlog, acabei utilizando json-server(criando db.json) e instalando a dependência, onde simula como se tivesse integrado. 
-
+Foi desenvolvido a parte de formulário contendo as três abas(geral,bens e observações), não foi implementado 'Listar', no qual disponibilizado em um dos layouts de tela, pois esse não consta descrito no backlog, acabei utilizando json-server e criando o arquivo db.json, fazendo um CRUD de da listas de bens
 # Como executar
 Instalar a dependência do json-server
 ```
