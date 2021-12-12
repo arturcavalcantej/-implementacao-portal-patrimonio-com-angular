@@ -1,0 +1,23 @@
+{
+  "bens": [
+    {
+      "marca": "intel",
+      "quantidade": 15,
+      "valor_unitario": "150",
+      "inicio_garantia": "2021-02-03",
+      "termino_garantia": "2021-07-03",
+      "observacoes": "ola",
+      "estado": "Bom",
+      "situacao": "Em uso",
+      "data_cadastro": "2021-12-10",
+      "tombamento": "202547",
+      "id": 15
+    },
+    {
+      "id": 16
+    },
+    {
+      "id": 17
+    }
+  ]
+}

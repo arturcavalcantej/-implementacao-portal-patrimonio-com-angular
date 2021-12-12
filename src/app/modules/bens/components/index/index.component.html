@@ -1,0 +1,249 @@
+<!--Card content -->
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title">Cadastrar Bem</h5>
+  </div>
+  <div class="card-body">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="geral-tab" data-bs-toggle="tab" data-bs-target="#geral" type="button"
+          role="tab" aria-controls="geral" aria-selected="true">Geral
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link " id="itens-tab" data-bs-toggle="tab" data-bs-target="#itens" type="button" role="tab"
+          aria-controls="itens" aria-selected="true">Bens
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link " id="observacoes-tab" data-bs-toggle="tab" data-bs-target="#observacoes" type="button"
+          role="tab" aria-controls="observacoes" aria-selected="true">Observações
+        </button>
+      </li>
+    </ul>
+    <!--Aba geral-->
+    <div class="tab-content mt-2" id="myTabContent">
+      <div class="tab-pane fade show active" id="geral" role="tabpanel" aria-labelledby="geral-tab">
+        <form>
+          <div class="row g-3">
+            <div class="col">
+              <label for="numero" class="form-label">Número(nnn/aaaa)
+              </label>
+              <input type="text" class="form-control" id="numero" disabled>
+            </div>
+            <div class="col">
+              <label for="fornecedor" class="form-label">Fornecedor
+              </label>
+              <input list="fornecedores" class="form-control" id="fornecedor">
+              <datalist id="fornecedores">
+                <option value="Fornecedor 1">
+                <option value="Fornecedor 2">
+
+              </datalist>
+            </div>
+            <div class="col">
+              <label for="nota-fiscal" class="form-label">Nota fiscal
+              </label>
+              <input list="notas_fiscais" class="form-control" id="nota_fiscal">
+              <datalist id="notas_fiscais">
+                <option value="Nota fiscal 1 do Fornecedor 1">
+                <option value="Nota fiscal 2 do Fornecedor 1">
+
+              </datalist>
+            </div>
+          </div>
+          <div class="row g-3 mt-1">
+            <div class="col">
+              <label for="numero" class="form-label">Item nota fiscal
+              </label>
+              <input list="itens_notas_fiscais" class="form-control" id="item_nota_fiscal">
+              <datalist id="itens_notas_fiscais">
+                <option value="Item nota fiscal 1 do Fornecedor 1">
+                <option value="Item nota fiscal 2 do Fornecedor 1">
+              </datalist>
+            </div>
+            <div class="col">
+              <label for="qntdv" class="form-label">Quantidade vinculada
+              </label>
+              <input type="number" class="form-control" id="qntdv">
+            </div>
+            <div class="col">
+              <label for="qntdd" class="form-label">Quantidade disponivel
+              </label>
+              <input type="number" class="form-control" id="qntdd">
+            </div>
+
+          </div>
+        </form>
+      </div>
+      <!--Aba bens-->
+      <div class="tab-pane fade" id="itens" role="tabpanel" aria-labelledby="itens-tab">
+        <div class="card">
+          <div class="card-header">
+            <div class="d-flex justify-content-between">
+              <div class="d-flex align-items-center">
+                <h5 class="card-title">Bens</h5>
+              </div>
+              <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modaladd">
+                <i class="bi bi-plus-lg"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+
+                  <th scope="col">Tombamento</th>
+
+                  <th scope="col">Data</th>
+
+                  <th scope="col">Valor Unitário</th>
+
+                  <th scope="col">Itens</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let c of bens; let i=index">
+                  <th scope="row">{{c.id}}</th>
+
+                  <td>{{ c.tombamento }}</td>
+
+                  <td>{{ c.data_cadastro }}</td>
+
+                  <td>{{ c.valor_unitario }}</td>
+
+                  <td>
+                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                      data-bs-target="#exampleModal">
+                      <i class="bi bi-search"></i>
+                    </button>
+                    <button type="button" class="btn btn-primary purple-button btn-sm " id="botaolixo"
+                      (click)="del(c, i)">
+                      <i class="bi bi-trash "></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+        </div>
+      </div>
+      <!--//Aba bens-->
+      <!--Aba observaçoes-->
+      <div class="tab-pane fade" id="observacoes" role="tabpanel" aria-labelledby="observacoes-tab">
+        <div class="card">
+          <div class="card-header">
+            <h5>Observações</h5>
+          </div>
+          <div class="card-body">
+            <textarea class="form-control" id="exampleFormControlTextarea1"></textarea>
+          </div>
+        </div>
+      </div>
+      <!--//Aba observaçoes-->
+    </div>
+    <!--//Aba geral-->
+  </div>
+  <div class="card-footer">
+    <div class="d-flex justify-content-end">
+      <div class="btn-group gap-1" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-secondary">Voltar
+        </button>
+        <button type="button" class="btn btn-primary">Enviar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--//Card content -->
+<!-- Modal vizualizar -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Visualizar bem</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <dl *ngFor="let c of bens; let i=index">
+          <dt>Estado</dt>
+          <dd>{{c.estado}}</dd>
+
+          <dt>Marca</dt>
+          <dd>{{c.marca}}</dd>
+
+          <dt>Situação de uso</dt>
+          <dd>{{c.situacao}}</dd>
+        </dl>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal adicionar bens-->
+<div class="modal fade" id="modaladd" tabindex="-1" aria-labelledby="modaladd" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modaladd">Adicionar bem</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="bemForm" (ngSubmit)="onSubmit()">
+          <div class="row g-3">
+            <div class="col">
+              <label for="quantidade" class="form-label">Quantidade</label>
+              <input type="number" class="form-control" id="quantidade" formControlName='quantidade'>
+            </div>
+            <div class="col">
+              <label for="marca" class="form-label">Marca</label>
+              <input type="text" class="form-control" id="marca" formControlName='marca'>
+            </div>
+            <div class="col">
+              <label for="valor_unitario" class="form-label">Valor unítario</label>
+              <input type="text" class="form-control" id="valor_unitario" formControlName='valor_unitario'>
+            </div>
+          </div>
+
+          <div class="row g-3">
+            <div class="col">
+              <label for="inicio" class="form-label">Inicio de garantia
+              </label>
+              <input type="date" class="form-control" id="inicio" formControlName='inicio_garantia'>
+            </div>
+            <div class="col">
+              <label for="fim" class="form-label">Fim de garantia
+              </label>
+              <input type="date" class="form-control" id="fim" formControlName='termino_garantia'>
+            </div>
+            <div class="row g-3">
+              <div class="col-auto w-100 ">
+                <label for="text-obervacoes" class="form-label">Observações
+                </label>
+                <textarea type="textarea" rows="3" class="form-control" id="text-obervacoes"
+                  formControlName='observacoes'>
+                </textarea>
+              </div>
+            </div>
+          </div>
+          <!--Botoes -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar
+            </button>
+            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="!bemForm.valid">Adicionar
+            </button>
+          </div>
+          <!--//Botoes -->
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--//Modal adicionar-->
